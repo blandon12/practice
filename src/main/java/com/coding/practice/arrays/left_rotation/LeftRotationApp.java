@@ -31,6 +31,11 @@ public class LeftRotationApp {
             result[i] = dequeIterator.next();
             i++;
         }
+// Optimal solution:
+//        int[] r = new int[a.length];
+//        System.arraycopy(a, d, r, 0, a.length - d);
+//        System.arraycopy(a, 0, r, a.length - d, d - 1);
+//        return r;
 
         return result;
     }

@@ -13,26 +13,35 @@ public class MinimumAbsoluteDifferenceApp {
     // Complete the minimumAbsoluteDifference function below.
     static int minimumAbsoluteDifference(int[] arr) {
 
-        int result = 0;
-        Integer diff = null;
 
-        List<Integer> list = new ArrayList<>();
-        for (Integer i : arr) {
-            list.add(i);
+        // Optimal solution
+        int diff = arr[arr.length - 1] - arr[0];
+        Arrays.sort(arr);
+        for (int i=0;i<arr.length - 1;i++) {
+            int n = Math.abs(arr[i] - arr[i+1]);
+            diff = n < diff ? n : diff;
         }
-        Collections.sort(list);
+        return diff;
 
-        for (int i=0; i<list.size()-1; i++) {
-            int value = Math.abs(list.get(i) - list.get(i+1));
-
-            if (diff == null) {
-                diff = value;
-            } else {
-                diff = diff > value ? value : diff;
-            }
-        }
-
-        return diff == null ? result : diff;
+//        int result = 0;
+//        Integer diff = null;
+//        List<Integer> list = new ArrayList<>();
+//        for (Integer i : arr) {
+//            list.add(i);
+//        }
+//        Collections.sort(list);
+//
+//        for (int i=0; i<list.size()-1; i++) {
+//            int value = Math.abs(list.get(i) - list.get(i+1));
+//
+//            if (diff == null) {
+//                diff = value;
+//            } else {
+//                diff = diff > value ? value : diff;
+//            }
+//        }
+//
+//        return diff == null ? result : diff;
     }
 
     private static final Scanner scanner = new Scanner(System.in);

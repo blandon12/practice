@@ -67,39 +67,58 @@ public class InsertNodeAtPositionApp {
      */
     static SinglyLinkedListNode insertNodeAtPosition(SinglyLinkedListNode head, int data, int position) {
 
-
-        LinkedList<Integer> list = new LinkedList<>();
+        // Optimal solution
+        SinglyLinkedListNode tmp = head;
+        SinglyLinkedListNode aux = new SinglyLinkedListNode(data);
 
         if (position == 0) {
-            list.add(data);
+            aux.next = tmp;
+            return aux;
         }
 
-        int i = 1;
-        list.add(head.data);
-        SinglyLinkedListNode node = head.next;
-        while (node.next != null) {
-
-            if (i == position) {
-                list.add(data);
+        for (int i = 0; i < position; i++) {
+            if (i == position - 1) {
+                aux.next = tmp.next;
+                tmp.next = aux;
             }
-
-            list.add(node.data);
-            node = node.next;
-
-            i++;
+            tmp = tmp.next;
         }
 
-        if (i == position) {
-            list.add(data);
-        }
-        list.add(node.data);
+        return head;
 
-        SinglyLinkedList sList = new SinglyLinkedList();
-        for (int d : list) {
-            sList.insertNode(d);
-        }
 
-        return sList.head;
+//        LinkedList<Integer> list = new LinkedList<>();
+//
+//        if (position == 0) {
+//            list.add(data);
+//        }
+//
+//        int i = 1;
+//        list.add(head.data);
+//        SinglyLinkedListNode node = head.next;
+//        while (node.next != null) {
+//
+//            if (i == position) {
+//                list.add(data);
+//            }
+//
+//            list.add(node.data);
+//            node = node.next;
+//
+//            i++;
+//        }
+//
+//        if (i == position) {
+//            list.add(data);
+//        }
+//        list.add(node.data);
+//
+//        SinglyLinkedList sList = new SinglyLinkedList();
+//        for (int d : list) {
+//            sList.insertNode(d);
+//        }
+//
+//        return sList.head;
     }
 
     private static final Scanner scanner = new Scanner(System.in);

@@ -36,6 +36,9 @@ public class IceCreamPalorApp {
         for (int i=0;i<cost.length;i++) {
 
             int key = Arrays.binarySearch(cost, money - cost[i]);
+
+            Arrays.binarySearch(cost, i+1, cost.length, money-cost[i]);
+
             if (key > 0 && key != i) {
                 int m = list.indexOf(cost[i]) + 1;
                 int n = list.lastIndexOf(cost[key]) + 1;
