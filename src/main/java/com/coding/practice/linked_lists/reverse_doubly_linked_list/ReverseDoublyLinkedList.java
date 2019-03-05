@@ -70,27 +70,44 @@ public class ReverseDoublyLinkedList {
      *
      */
     static DoublyLinkedListNode reverse(DoublyLinkedListNode head) {
-        DoublyLinkedListNode cur = head;
-        DoublyLinkedListNode pre;
 
-        if (cur == null) {
-            return cur;
+        DoublyLinkedListNode curr = head;
+        DoublyLinkedListNode temp = null;
+
+        while (curr != null) {
+            temp = curr.prev;
+            curr.prev = curr.next;
+            curr.next = temp;
+            curr = curr.prev;
         }
 
-        while (cur.next != null) {
-            pre = cur.next;
-            cur.next = cur.prev;
-            cur.prev = pre;
-            cur = pre;
+        if (temp != null) {
+            head = temp.prev;
         }
 
+        return head;
 
-        if (cur.next == null) {
-            cur.next = cur.prev;
-            cur.prev = null;
-        }
-
-        return cur;
+//        DoublyLinkedListNode cur = head;
+//        DoublyLinkedListNode pre;
+//
+//        if (cur == null) {
+//            return cur;
+//        }
+//
+//        while (cur.next != null) {
+//            pre = cur.next;
+//            cur.next = cur.prev;
+//            cur.prev = pre;
+//            cur = pre;
+//        }
+//
+//
+//        if (cur.next == null) {
+//            cur.next = cur.prev;
+//            cur.prev = null;
+//        }
+//
+//        return cur;
     }
 
     private static final Scanner scanner = new Scanner(System.in);
