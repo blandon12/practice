@@ -1,64 +1,37 @@
 package com.coding.practice;
 
-import com.coding.practice.trees.binary_search_tree.Node;
-
-import java.util.*;
-
-class Employee {
-    public String name;
-    public List<Employee> employeeList;
-
-    public Employee(String name, List<Employee> employeeList) {
-        this.name = name;
-        this.employeeList = employeeList;
-    }
-}
+import java.util.ArrayDeque;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class Solution {
 
-    public static Employee alphabetFirst(Employee employee) {
-
-        if (employee.employeeList.isEmpty()) {
-            return employee;
-        }
-
-        Iterator<Employee> employeeIterator = employee.employeeList.iterator();
-        Employee temp = employee;
-        while (employeeIterator.hasNext()) {
-            Employee e = alphabetFirst(employeeIterator.next());
-            if (temp.name.compareTo(e.name) > 0) {
-                temp = e;
-            }
-        }
-
-        return temp;
-    }
-
     public static void main(String[] args) {
 
-        List<Employee> abbyList = new ArrayList<>();
-        Employee abby = new Employee("abby", abbyList);
-        List<Employee> aaronList = new ArrayList<>();
-        Employee aaron = new Employee("aaron", aaronList);
+//        String t = "54321";
+//        System.out.println(t.substring(0, 4));
 
-        List<Employee> kevinList = new ArrayList<>();
-        kevinList.add(abby);
-        kevinList.add(aaron);
-        Employee kevin = new Employee("kevin", kevinList);
+        System.out.println(fact(654321));
 
-        List<Employee> aaaxList = new ArrayList<>();
-        Employee aaax = new Employee("aaax", aaaxList);
+        Queue<Integer> queue = new LinkedList<>();
+        queue.poll();
+        queue.add(1);
 
-        List<Employee> jackList = new ArrayList<>();
-        jackList.add(aaax);
-        Employee jack = new Employee("jack", jackList);
 
-        List<Employee> bobList = new ArrayList<>();
-        bobList.add(kevin);
-        bobList.add(jack);
-        Employee bob = new Employee("bob", bobList);
+    }
 
-        Employee result = alphabetFirst(bob);
-        System.out.println(result.name);
+    private static int fact(int n) {
+
+        String s = String.valueOf(n);
+        return calc(s);
+
+    }
+
+    private static int calc(String s) {
+        if (s.length() == 1) {
+            return Integer.valueOf(s);
+        }
+
+        return calc(s.substring(0, s.length()-1)) + Integer.valueOf(s.substring(s.length()-1));
     }
 }
