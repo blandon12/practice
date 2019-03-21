@@ -1,37 +1,52 @@
 package com.coding.practice;
 
-import java.util.ArrayDeque;
-import java.util.LinkedList;
-import java.util.Queue;
-
 public class Solution {
+    private static int[][] arr;
 
     public static void main(String[] args) {
+        String s = "GGCACCACG";
+        String t = "ACGGCGGATACG";
 
-//        String t = "54321";
-//        System.out.println(t.substring(0, 4));
+//        String s = "AAABA";
+//        String t = "BBBA";
 
-        System.out.println(fact(654321));
-
-        Queue<Integer> queue = new LinkedList<>();
-        queue.poll();
-        queue.add(1);
-
-
+        arr = new int[s.length()+1][t.length()+1];
+        int result = lcs(s, t, s.length(), t.length());
+        System.out.println(result);
     }
 
-    private static int fact(int n) {
+    private static int lcs(String s, String t, int m, int n) {
 
-        String s = String.valueOf(n);
-        return calc(s);
+        int result = 0;
 
-    }
-
-    private static int calc(String s) {
-        if (s.length() == 1) {
-            return Integer.valueOf(s);
+        if (m == 0 || n == 0) {
+            return result;
         }
 
-        return calc(s.substring(0, s.length()-1)) + Integer.valueOf(s.substring(s.length()-1));
+        if (arr[m][n] > 0) {
+            return arr[m][n];
+        }
+
+        if (s.substring(m-1).equals(t.substring(n-1))) {
+            result = 1 + lcs(s.substring(0, m-1), t.substring(0, n-1), m-1, n-1);
+            arr[m][n] = result;
+        }
+
+        if (!s.substring(m-1).equals(t.substring(n-1))) {
+            result = Math.max(lcs(s.substring(0, m-1), t.substring(0, n), m-1, n),
+                lcs(s.substring(0, m), t.substring(0, n-1), m, n-1));
+            arr[m][n] = result;
+        }
+
+        return result;
+    }
+
+    private static String reverse(String s) {
+
+        if (s.length() == 1) {
+            return s;
+        }
+
+        return s.substring(s.length()-1) + reverse(s.substring(0, s.length()-1));
     }
 }

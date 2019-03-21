@@ -18,14 +18,20 @@ import static java.util.stream.Collectors.toMap;
 @SpringBootApplication
 public class PracticeApplication {
 
-    @Bean
-    CommandLineRunner runner(){
-        return args -> {
-            System.out.println("CommandLineRunner running in the PracticeApplication class...");
-        };
+    public static Integer reverseInt(Integer a) {
+        if (a/10 == 0) {
+            return a;
+        }
+
+        return Integer.valueOf(Integer.valueOf(a%10).toString() + reverseInt(a/10).toString());
     }
 
     public static void main(String[] args) {
+
+//        int a = -123456;
+        int a = 900;
+
+        System.out.println(reverseInt(Math.abs(a)) * (int) Math.signum(a));
 
 
 //        SpringApplication.run(PracticeApplication.class, args);
