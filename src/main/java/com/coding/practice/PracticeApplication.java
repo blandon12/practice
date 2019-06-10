@@ -17,21 +17,45 @@ import static java.util.stream.Collectors.toMap;
 
 @SpringBootApplication
 public class PracticeApplication {
+    public static int reverse(int x) {
 
-    public static Integer reverseInt(Integer a) {
-        if (a/10 == 0) {
-            return a;
+        int res = 0;
+        int p = x;
+
+        while (p > 0) {
+            int mod = p % 10;
+            p = p / 10;
+            res = res * 10 + mod;
         }
 
-        return Integer.valueOf(Integer.valueOf(a%10).toString() + reverseInt(a/10).toString());
+        return res;
     }
-
     public static void main(String[] args) {
 
-//        int a = -123456;
-        int a = 900;
+//        Scanner scanner = new Scanner(System.in);
+//        int n = scanner.nextInt();
+//        while (scanner.hasNext()) {
+//            String num = scanner.next();
+//            String[] arrNum = num.split("");
+//            Collections.reverse(Arrays.asList(arrNum));
+//        }
 
-        System.out.println(reverseInt(Math.abs(a)) * (int) Math.signum(a));
+        String result = "";
+        String s = "<script>bb</script>mm<script>cc</script>nn";
+        int from = s.indexOf("<script");
+        int to = s.indexOf("</script>");
+
+        if (from >= 0) {
+            result = result + s.substring(0, from);
+        }
+
+        if (to >= 0) {
+            result = result + s.substring(to+9);
+        }
+        System.out.println(result);
+    }
+
+//        System.out.println(reverseInt(Math.abs(a)) * (int) Math.signum(a));
 
 
 //        SpringApplication.run(PracticeApplication.class, args);
@@ -108,7 +132,7 @@ public class PracticeApplication {
 //        s.length()
 
 //        SpringApplication.run(PracticeApplication.class, args);
-    }
+
 
 }
 
